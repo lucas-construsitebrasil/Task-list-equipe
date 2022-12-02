@@ -15,14 +15,15 @@ require 'vendor/autoload.php';
 class Cadastrar
 {
     use Business;
-    public function insertTaskUser($post)
+    public function insertTaskUser($post) // Aqui o POST tá certo.
     {
         if (!empty($post)) {
             $title = $post['titulo'];
             $description = $post['descricao'];
             $priority = $post['prioridade'];
             
-            if ($priority == 3) {
+            if ($priority == 3) { // Oque é 3? quem lê o código não sabe oque é isso, colocar em uma constante, exemplo? HIGHT_PRIORITY = 3
+                //Criar Função pra enviar e-mail  e usar aqui (Solid reutilização)
                 $mail = new PHPMailer(true);
                     $mail->isSMTP();                                            
                     $mail->Host       = 'mail.enviarformularios.com.br';                     
@@ -51,7 +52,7 @@ class Cadastrar
             'fk_id_prioridade_tasks_prioridade' => $priority,
         );
 
-        
+        // faltou verificar se é dia útil
         return $this->repository->insertTasks($data);
     }
 }

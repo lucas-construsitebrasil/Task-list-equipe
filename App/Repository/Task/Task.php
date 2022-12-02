@@ -17,7 +17,7 @@ class Task
 
     public function insertTaskslog($data)
     {
-        if (!empty($_POST)) {
+        if (!empty($_POST)) { // pegando post no repository, aquilo q falei
             $db = $this->connection;
             $db->insert('log', $data);
         }
